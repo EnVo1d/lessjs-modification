@@ -1,0 +1,44 @@
+@list1: 'color', 'width', 'size';
+@list2: "height";
+@list3: "color";
+@list1_ref: @list1;
+@color: red;
+.my-mixin() {
+	width: 100px;
+	background: red;
+	color: green;
+	height: auto;
+}
+.my-mixin-1() {
+	width: 100%;
+	color: green;
+	.a {
+		color: white;
+	}
+}
+.class {
+	.my-mixin() - @list1;
+}
+.class2 {
+	.my-mixin-1() - @list3;
+}
+.class3 {
+	.my-mixin() 
+	- @@list1_ref 
+	- @list2;
+}
+.my-mixin-2() {
+	display: block;
+	flex-direction: column;
+}
+@list4: "display";
+.class4 {
+	.my-mixin-2() !important - @list4;
+	display: block;
+}
+.class5 {
+	.my-mixin();
+}
+// .class6 {
+// 	.my-mixin() - @list2 !important;
+// }
